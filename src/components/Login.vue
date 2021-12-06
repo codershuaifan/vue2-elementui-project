@@ -4,7 +4,7 @@
       <div class="imagediv">
         <img src="../assets/logo.png" alt="" class="image">
       </div>
-      <el-form class="loginform" :model="form" :rules="rules" ref="formref">
+      <el-form class="loginform" :model="form" :rules="rules" ref="formref" status-icon>
         <el-form-item prop="name">
           <el-input prefix-icon="iconfont icon-user" v-model="form.name"></el-input>
         </el-form-item>
