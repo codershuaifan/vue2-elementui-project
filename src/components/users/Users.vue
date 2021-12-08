@@ -66,7 +66,12 @@
               placement="top"
               :enterable="false"
             >
-              <el-button type="warning" icon="el-icon-setting" size="mini" />
+              <el-button
+                type="warning"
+                icon="el-icon-setting"
+                size="mini"
+                @click="giveRoles(scope.row)"
+              />
             </el-tooltip>
           </template>
         </el-table-column>
@@ -76,7 +81,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-sizes="[1, 2, 5, 10]"
+        :page-sizes="[1, 2, 5, 8, 10]"
         :page-size="params.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -152,6 +157,31 @@
         <el-button type="primary" @click="confirmUpte">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog title="分配角色" :visible.sync="RolesVisible" width="50%">
+      <div class="Roles">
+        <div>当前的用户：{{ oldRoles.username }}</div>
+        <div>当前的角色：{{ oldRoles.role_name }}</div>
+        <div>
+          分配新角色：
+          <el-select v-model="value" placeholder="请选择">
+            <el-option
+              v-for="item in RolesList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            >
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+      <!-- 按钮区域 -->
+      <span slot="footer">
+        <el-button @click="RolesVisible = false">取 消</el-button>
+        <el-button type="primary" @click="confirmChangeRoles"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -221,6 +251,10 @@ export default {
           { validator: checkmobile, trigger: "blur" },
         ],
       },
+      RolesVisible: false,
+      oldRoles: {},
+      RolesList:[],
+      value:''
     };
   },
   methods: {
@@ -295,17 +329,37 @@ export default {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
-      }).then(async ()=>{
-        const {data:res}=await this.$http.delete(`users/${row.id}`)
-        if(res.meta.status===200){
-          this.getusersdata()
-          this.$message.success('删除成功')
-        }
-        else return this.$message.error('删除失败')
-      }).catch(()=>{
-        this.$message.info('已取消删除')
       })
+        .then(async () => {
+          const { data: res } = await this.$http.delete(`users/${row.id}`);
+          if (res.meta.status === 200) {
+            this.getusersdata();
+            this.$message.success("删除成功");
+          } else return this.$message.error("删除失败");
+        })
+        .catch(() => {
+          this.$message.info("已取消删除");
+        });
     },
+    giveRoles(row) {
+      this.oldRoles = row;
+      this.getRolesList()
+      this.RolesVisible = true;
+    },
+    async getRolesList(){
+      const {data:res}=await this.$http.get('roles')
+      if(res.meta.status!==200)return this.$message.error('获取角色列表失败')
+      this.RolesList=res.data
+    },
+    async confirmChangeRoles(){
+      const {data:res}=await this.$http.put(`users/${this.oldRoles.id}/role`,{rid:this.value})
+      console.log(res);
+      if(res.meta.status!==200)return this.$message.error(res.meta.msg)
+      this.getusersdata()
+      this.RolesVisible=false
+      this.value=''
+      this.$message.success('分配角色成功')
+    }
   },
   created() {
     this.getusersdata();
@@ -322,5 +376,8 @@ export default {
 }
 .el-pagination {
   margin-top: 15px;
+}
+.Roles div {
+  margin: 20px 0;
 }
 </style>
