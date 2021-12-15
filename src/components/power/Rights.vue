@@ -7,7 +7,7 @@
       <el-breadcrumb-item>权限列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片内容 -->
-    <el-card>
+    <el-card shadow="hover">
       <el-table :data="rightslist" style="width: 100%" stripe border>
         <el-table-column type="index" label="#">
         </el-table-column>

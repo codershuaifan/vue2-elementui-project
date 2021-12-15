@@ -7,3 +7,6 @@ html,body,#app{
 #app{
   min-width: 1300px;
 }
+.el-cascader-panel {
+  height: 200px;
+}

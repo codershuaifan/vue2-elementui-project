@@ -7,7 +7,7 @@
       <el-breadcrumb-item>角色列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片内容 -->
-    <el-card>
+    <el-card shadow="hover">
       <el-button type="primary" @click="addRoles">添加角色</el-button>
       <!-- 表格内容 -->
       <el-table :data="rolesList" border stripe>
