@@ -31,5 +31,6 @@ module.exports = {
         return args
       })
     })
-  }
+  },
+  publicPath:"./"
 }
