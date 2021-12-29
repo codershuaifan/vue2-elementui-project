@@ -125,13 +125,6 @@
 </template>
 
 <script>
-// 导入富文本编辑器
-import "quill/dist/quill.core.css";
-import "quill/dist/quill.snow.css";
-import "quill/dist/quill.bubble.css";
-
-import { quillEditor } from "vue-quill-editor";
-
 // 导入lodash库
 import _ from 'lodash'
 
@@ -322,9 +315,6 @@ export default {
   },
   created() {
     this.getCateList();
-  },
-  components: {
-    quillEditor,
   },
 };
 </script>

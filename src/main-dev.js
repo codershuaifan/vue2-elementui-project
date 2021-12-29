@@ -7,15 +7,37 @@ import './assets/global.css'
 import './assets/fonts/iconfont.css'
 import TreeTable from 'vue-table-with-tree-grid'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// 导入nprogress的js和css
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+// require styles 导入富文本编辑器对应的样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+axios.defaults.baseURL = 'https://lianghj.top:8888/api/private/v1/'
 axios.interceptors.request.use(config => {
+  // 开始nprogress
+  NProgress.start()
   config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+
+axios.interceptors.response.use(config=>{
+  // 结束nprogress
+  NProgress.done()
   return config
 })
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.component('tree-table', TreeTable)
+
+// 将富文本编辑器，注册为全局可用的组件
+Vue.use(VueQuillEditor)
 
 // 全局时间过滤器
 Vue.filter('timeFilter', (originTime) => {
