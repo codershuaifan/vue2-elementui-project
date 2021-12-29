@@ -4,7 +4,8 @@ import {
   Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem,
   Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,
   Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,
-  Alert,Tabs,TabPane,Steps,Step,CheckboxGroup,Checkbox,Upload,Timeline,TimelineItem
+  Alert,Tabs,TabPane,Steps,Step,CheckboxGroup,Checkbox,Upload,Timeline,TimelineItem,
+  Carousel,CarouselItem,Calendar,Rate,Descriptions,DescriptionsItem,Divider,Progress
 } from 'element-ui'
 
 Vue.use(Button)
@@ -44,5 +45,13 @@ Vue.use(Checkbox)
 Vue.use(Upload)
 Vue.use(Timeline)
 Vue.use(TimelineItem)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
+Vue.use(Calendar)
+Vue.use(Rate)
+Vue.use(Descriptions)
+Vue.use(DescriptionsItem)
+Vue.use(Divider)
+Vue.use(Progress)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm= MessageBox.confirm

@@ -18,7 +18,6 @@ module.exports = {
       }
     ],
     // 发布产品时候的插件数组
-    ...proPlugins,
-    ["@babel/plugin-syntax-dynamic-import"]
+    ...proPlugins
   ]
 }

@@ -4,7 +4,7 @@
     <el-header>
       <img src="../../image/home/小帆的图书馆图标.png" alt="" class="logo" />
       <div class="headertxt">电商后台管理系统</div>
-      <el-button type="primary" round @click="loginout">退出登录</el-button>
+      <el-button type="primary" round @click="loginout" class="btn">退出登录</el-button>
     </el-header>
     <el-container>
       <!-- 侧边栏 -->
@@ -35,6 +35,7 @@
             </el-menu-item>
           </el-submenu>
         </el-menu>
+        <el-button type="primary" class="btn2" round plain @click="backWelcome">首页</el-button>
       </el-aside>
       <!-- 主体区 -->
       <el-main>
@@ -72,6 +73,9 @@ export default {
     active(index){
       this.defaultactive=index
       window.sessionStorage.setItem('activepath',index)
+    },
+    backWelcome(){
+      this.$router.push('/welcome')
     }
   },
   created() {
@@ -107,7 +111,7 @@ export default {
   font-size: 1.6em;
   margin-left: 10px;
 }
-.el-button {
+.btn {
   position: absolute;
   right: 10px;
 }
@@ -125,5 +129,10 @@ export default {
   line-height: 40px;
   font-size: 20px;
   letter-spacing: 0.2em;
+}
+.btn2{
+  position: fixed;
+  left: 55px;
+  top: 70%;
 }
 </style>
