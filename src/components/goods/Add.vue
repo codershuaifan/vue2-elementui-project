@@ -310,7 +310,7 @@ export default {
     },
     // 上传的文件地址
     upLoadAddress() {
-      return "http://127.0.0.1:8888/api/private/v1/upload";
+      return "https://lianghj.top:8888/api/private/v1/upload";
     },
   },
   created() {

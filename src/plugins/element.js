@@ -3,7 +3,7 @@ import {
   Button, Form, FormItem, Input,
   Message, Container, Header, Aside, Main, Menu, Submenu, MenuItem,
   Breadcrumb, BreadcrumbItem,Card,Row,Col,Table,TableColumn,Switch,
-  Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,
+  Tooltip,Pagination,Dialog,MessageBox,Tag,Tree,Select,Option,Cascader,ButtonGroup,
   Alert,Tabs,TabPane,Steps,Step,CheckboxGroup,Checkbox,Upload,Timeline,TimelineItem,
   Carousel,CarouselItem,Calendar,Rate,Descriptions,DescriptionsItem,Divider,Progress
 } from 'element-ui'
@@ -53,5 +53,6 @@ Vue.use(Descriptions)
 Vue.use(DescriptionsItem)
 Vue.use(Divider)
 Vue.use(Progress)
+Vue.use(ButtonGroup)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm= MessageBox.confirm
